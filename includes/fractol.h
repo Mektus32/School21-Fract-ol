@@ -12,10 +12,36 @@
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
+# define WIDTH 1200
+# define HEIGHT 600
 
 # include "libft.h"
 # include "mlx.h"
 # include <math.h>
 # include <stdio.h>
+
+typedef	struct 		s_image
+{
+	void		*img_ptr;
+	int 		*img_data;
+	int 		bpp;
+	int 		sizeline;
+	int 		endian;
+}					t_image;
+
+typedef	struct		s_fractol
+{
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_image		*image;
+	int 		color;
+	int 		numfrac;
+	int 		iterations;
+	int 		p;//Степень в формуле
+	double		zoom;
+}					t_fractol;
+
+int					ft_check_input(int ac, char **av, t_fractol *frac);
+void				ft_init_win(t_fractol *frac);
 
 #endif
