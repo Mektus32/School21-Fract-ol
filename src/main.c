@@ -36,22 +36,28 @@ void	ft_init_win(t_fractol *frac)
 {
 	frac->mlx_ptr = mlx_init();
 	if (frac->numfrac == 1)
-		mlx_new_window(frac->win_ptr, WIDTH, HEIGHT, "Mandelbrot");
+		frac->win_ptr = mlx_new_window(frac->mlx_ptr, WIDTH, HEIGHT, "Mandelbrot");
 	else if (frac->numfrac == 2)
-		mlx_new_window(frac->win_ptr, WIDTH, HEIGHT, "Julia");
-	else if (frac->numfrac == 3);
-		mlx_new_window(frac->win_ptr, WIDTH, HEIGHT, "Ship");
+		frac->win_ptr = mlx_new_window(frac->mlx_ptr, WIDTH, HEIGHT, "Julia");
+	else if (frac->numfrac == 3)
+		frac->win_ptr = mlx_new_window(frac->mlx_ptr, WIDTH, HEIGHT, "Ship");
 	frac->color = 0xF1FF14;
 	frac->image = ft_memalloc(sizeof(t_image));
 	frac->image->bpp = 32;
 	frac->image->endian = 0;
-	frac->image->sizeline = WIDTH * 4;
+	frac->image->sizeline = WIDTH;
 	frac->image->img_ptr = mlx_new_image(frac->mlx_ptr, WIDTH, HEIGHT);
-	frac->image->img_data = mlx_get_data_addr(frac->image->img_ptr,
+	frac->cart = mlx_get_data_addr(frac->image->img_ptr,
 	&frac->image->bpp, &frac->image->sizeline, &frac->image->endian);
 	frac->iterations = 10;
-	frac->p = 2;
-	frac->zoom = 10;
+	frac->p = 3;
+	frac->zoom = 250;
+	frac->iterations = 10;
+	frac->movex = 0;
+	frac->movey = 0;
+	frac->x0 = 0;
+	frac->y0 = 0;
+	frac->move = 1;
 }
 
 int 	main(int ac, char **av)
@@ -65,7 +71,21 @@ int 	main(int ac, char **av)
 	}
 	frac = ft_memalloc(sizeof(t_fractol));
 	frac->numfrac = ft_check_input(ac, av, frac);
+	printf("numfrac->[%d]\n", frac->numfrac);
 	ft_init_win(frac);
-	printf("frac->numfrac = [%d]\n", frac->numfrac);
+//	if (frac->numfrac == 1)
+//		mandelbrot(frac);
+//	for (int i = 0; i < HEIGHT * 4; i++)
+//	{
+//		for (int j = 0; j < WIDTH; j += 4)
+//		{
+//			frac->cart[i * WIDTH + j] += i;
+//			frac->cart[i * WIDTH + j + 1] += 0;
+//			frac->cart[i * WIDTH + j + 2] += i;
+//		}
+//	}
+	mlx_put_image_to_window(frac->mlx_ptr, frac->win_ptr, frac->image->img_ptr, 0, 0);
+	ft_key_hook(frac);
+	mlx_loop(frac->mlx_ptr);
 	return (0);
 }

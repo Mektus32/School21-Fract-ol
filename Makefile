@@ -15,7 +15,11 @@
 NAME = fractol
 
 # src / obj files
-SRC = main.c \
+SRC =	main.c \
+		mandelbrot.c \
+		comp_func.c \
+		key_hook.c
+
 
 OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
 

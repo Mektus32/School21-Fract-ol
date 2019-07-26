@@ -39,9 +39,18 @@ typedef	struct		s_fractol
 	int 		iterations;
 	int 		p;//Степень в формуле
 	double		zoom;
+	double		movex;
+	double		movey;
+	double		x0;
+	double		y0;
+	int			move;
+	char		*cart;
 }					t_fractol;
 
 int					ft_check_input(int ac, char **av, t_fractol *frac);
 void				ft_init_win(t_fractol *frac);
+void				mandelbrot(t_fractol *frac);
+double				ft_pow_comp(double x, double y, int n, double *v);
+void				ft_key_hook(t_fractol *frac);
 
 #endif
