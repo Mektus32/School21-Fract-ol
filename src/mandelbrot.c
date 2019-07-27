@@ -39,7 +39,11 @@ void	ft_calc_formul(t_fractol *frac, int *x, double *b, int *y)
 	if (i == frac->iterations)
 		frac->image->img_data[*y * WIDTH + *x] = 0x000000;
 	else
-		frac->image->img_data[*y * WIDTH + *x] = frac->color + i * 1000;
+	{
+		frac->image->img_data[*y * WIDTH + *x] = frac->color * i;
+		if (frac->choise == 1)
+			frac->image->img_data[*y * WIDTH + *x] = 0xFFFFFF;
+	}
 }
 
 void	mandelbrot(t_fractol *frac)
@@ -51,7 +55,6 @@ void	mandelbrot(t_fractol *frac)
 	y = -1;
 	while (++y < HEIGHT)
 	{
-		//b = (-y + (HEIGHT / 2.)) / frac->zoom;
 		b = -1.25 + (y / (frac->zoom) + frac->movey);
 		x = -1;
 		while (++x < WIDTH)

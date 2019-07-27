@@ -19,6 +19,8 @@ int 	expose(t_fractol *frac)
 	return (0);
 }
 
+int 	color(t_fractol *frac);
+
 int 	mouse(int button, int x, int y, t_fractol *frac)
 {
 	if (button == 4)
@@ -35,9 +37,18 @@ int 	mouse(int button, int x, int y, t_fractol *frac)
 	}
 	if (button == 1)
 		frac->move = (frac->move + 1) % 2;
-//	mlx_clear_window(frac->mlx_ptr, frac->win_ptr);
-//	if (frac->numfrac == 1)
-//		mandelbrot(frac);
+	color(frac);
+	return (0);
+}
+
+int		jul(int x, int y, t_fractol *frac)
+{
+	if (frac->numfrac == 1 && frac->move == 1)
+	{
+		frac->x0 = x / 1.2;
+		frac->y0 = y / 1.2;
+	}
+	color(frac);
 	return (0);
 }
 
@@ -54,49 +65,66 @@ int 	keyboard(int key, t_fractol *frac)
 	key == 125 ? frac->movey += 5 / frac->zoom : 0;
 	key == 123 ? frac->movex += 5 / frac->zoom : 0;
 	key == 124 ? frac->movex -= 5 / frac->zoom : 0;
-//	mlx_clear_window(frac->mlx_ptr, frac->win_ptr);
-//	if (frac->numfrac == 1)
-//		mandelbrot(frac);
-	return (0);
-}
+//	if (key == 18)
+//		frac->choise = 1;
+//	else if (key == 19)
+//		frac->choise = 2;
+//	else if (key == 13)
+//		frac->w = (frac->w + 1) % 2;
+//	if (key == 69 && frac->speed < 10)
+//		frac->speed++;
+//	else if (key == 78 && frac->speed > 2)
+//		frac->speed--;
 
-int		jul(int x, int y, t_fractol *frac)
-{
-	if (frac->numfrac == 1 && frac->move == 1)
-	{
-		frac->x0 = x / 1.2;
-		frac->y0 = y / 1.2;
-	}
-	//mlx_clear_window(frac->mlx_ptr, frac->win_ptr);
-//	if (frac->numfrac == 1)
-//		mandelbrot(frac);
+	color(frac);
 	return (0);
 }
 
 int 	color(t_fractol *frac)
 {
-	for (int i = 0; i < HEIGHT * 4; i++)
-	{
-		for (int j = 0; j < WIDTH; j += 4)
-		{
-			frac->cart[i * WIDTH + j] += frac->cart[i * WIDTH + j] + 2  > 250 ? -20 : 2;
-			frac->cart[i * WIDTH + j + 1] += frac->cart[i * WIDTH + j + 1] + 2  > 250 ? -20 : 3;
-			frac->cart[i * WIDTH + j + 2] += frac->cart[i * WIDTH + j + 2] + 2  > 250 ? -20 : 4;
-		}
-	}
-	usleep(100000);
-//	for (int i = 0; i < HEIGHT * 4; i++)
+//	int 	red;
+//	int 	green;
+//	int 	blue;
+//
+//	printf("red->[%d] green->[%d] blue->[%d]\n", (frac->color >> 16) & 0xFF, (frac->color >> 8) & 0xFF, (frac->color & 0xFF));
+//	red = (frac->color >> 16) & 0xFF;
+//	green = (frac->color >> 8) & 0xFF;
+//	blue = frac->color & 0xFF;
+//	if (frac->w == 1)
 //	{
-//		for (int j = 0; j < WIDTH; j += 4)
-//		{
-//			frac->cart[i * WIDTH + j] -= 10;
-//			frac->cart[i * WIDTH + j + 1] -= 10;
-//			frac->cart[i * WIDTH + j + 2] -= 10;
+//		if (red <= 250 - frac->speed - 10 && frac->r == 0)
+//			red += frac->speed;
+//		else if (green <= 250 - frac->speed - 10 && frac->g == 0)
+//			green += frac->speed;
+//		else if (blue <= 250 - frac->speed - 10 && frac->b == 0)
+//			blue += frac->speed;
+//		else if (blue >= 250 - frac->speed - 10 || frac->b == 1) {
+//			frac->b = 1;
+//			if (blue <= frac->speed + 10) {
+//				frac->b = 2;
+//				frac->g = 0;
+//			}
+//			blue -= frac->speed;
+//		} else if (green >= 250 - frac->speed - 10 || frac->g == 1) {
+//			frac->g = 1;
+//			if (green <= frac->speed + 10) {
+//				frac->g = 2;
+//				frac->r = 0;
+//			}
+//			green -= frac->speed;
+//		} else if (red >= 250 - frac->speed - 10 || frac->r == 1) {
+//			frac->r = 1;
+//			if (red <= frac->speed + 1) {
+//				frac->r = 2;
+//				frac->b = 0;
+//			}
+//			red -= frac->speed;
 //		}
 //	}
-//	usleep(100000);
+//	frac->color = (red << 16) | (green << 8) | blue;
 	mlx_clear_window(frac->mlx_ptr, frac->win_ptr);
-	mlx_put_image_to_window(frac->mlx_ptr, frac->win_ptr, frac->image->img_ptr, 0, 0);
+	if (frac->numfrac == 1)
+		mandelbrot(frac);
 	return (0);
 }
 

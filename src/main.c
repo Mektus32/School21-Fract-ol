@@ -41,13 +41,13 @@ void	ft_init_win(t_fractol *frac)
 		frac->win_ptr = mlx_new_window(frac->mlx_ptr, WIDTH, HEIGHT, "Julia");
 	else if (frac->numfrac == 3)
 		frac->win_ptr = mlx_new_window(frac->mlx_ptr, WIDTH, HEIGHT, "Ship");
-	frac->color = 0xF1FF14;
+	frac->color = 0x9914FF;
 	frac->image = ft_memalloc(sizeof(t_image));
 	frac->image->bpp = 32;
 	frac->image->endian = 0;
 	frac->image->sizeline = WIDTH;
 	frac->image->img_ptr = mlx_new_image(frac->mlx_ptr, WIDTH, HEIGHT);
-	frac->cart = mlx_get_data_addr(frac->image->img_ptr,
+	frac->image->img_data = (int*)mlx_get_data_addr(frac->image->img_ptr,
 	&frac->image->bpp, &frac->image->sizeline, &frac->image->endian);
 	frac->iterations = 10;
 	frac->p = 3;
@@ -73,8 +73,8 @@ int 	main(int ac, char **av)
 	frac->numfrac = ft_check_input(ac, av, frac);
 	printf("numfrac->[%d]\n", frac->numfrac);
 	ft_init_win(frac);
-//	if (frac->numfrac == 1)
-//		mandelbrot(frac);
+	if (frac->numfrac == 1)
+		mandelbrot(frac);
 //	for (int i = 0; i < HEIGHT * 4; i++)
 //	{
 //		for (int j = 0; j < WIDTH; j += 4)

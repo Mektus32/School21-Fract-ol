@@ -44,7 +44,12 @@ typedef	struct		s_fractol
 	double		x0;
 	double		y0;
 	int			move;
-	char		*cart;
+	int			w;
+	int			choise;
+	int			speed;
+	int 		r;
+	int 		g;
+	int			b;
 }					t_fractol;
 
 int					ft_check_input(int ac, char **av, t_fractol *frac);
