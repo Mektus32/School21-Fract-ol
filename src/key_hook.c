@@ -43,7 +43,7 @@ int 	mouse(int button, int x, int y, t_fractol *frac)
 
 int		jul(int x, int y, t_fractol *frac)
 {
-	if (frac->numfrac == 1 && frac->move == 1)
+	if (frac->numfrac == 2 && frac->move == 1)
 	{
 		frac->x0 = x / 1.2;
 		frac->y0 = y / 1.2;
@@ -54,77 +54,114 @@ int		jul(int x, int y, t_fractol *frac)
 
 int 	keyboard(int key, t_fractol *frac)
 {
-	frac = frac + 1 - 1;
+	static	int 	i;
 	if (key == 53)
 		exit(0);
 	if (key == 24)
 		frac->iterations++;
 	else if (key == 27 && frac->iterations > 10)
 		frac->iterations--;
+	if (frac->numfrac == 4)
+	{
+		key == 69 ? frac->p++ : 0;
+		key == 78 ? frac->p-- : 0;
+	}
+	if (key == 18)
+	{
+		frac->numfrac = 1;
+		ft_init_win(frac);
+	}
+	else if (key == 19)
+	{
+		frac->numfrac = 2;
+		ft_init_win(frac);
+	}
+	else if (key == 20)
+	{
+		frac->numfrac = 3;
+		ft_init_win(frac);
+	}
+	else if (key == 21)
+	{
+		frac->numfrac = 4;
+		ft_init_win(frac);
+	}
+	key == 13 ? frac->w	= (frac->w + 1) % 2 : 0;
+	key == 83 ? frac->choise = 1: 0;
+	key == 84 ? frac->choise = 2: 0;
+	key == 85 ? frac->choise = 0: 0;
+	if (key == 8)
+	{
+		i++;
+		i == 1 ? frac->color = 0x9914FF : 0;
+		i == 2 ? frac->color = 0xFF5105 : 0;
+		i == 3 ? frac->color = 0x0596FF : 0;
+		if (i == 3)
+			i = 0;
+	}
 	key == 126 ? frac->movey -= 5 / frac->zoom : 0;
 	key == 125 ? frac->movey += 5 / frac->zoom : 0;
 	key == 123 ? frac->movex += 5 / frac->zoom : 0;
 	key == 124 ? frac->movex -= 5 / frac->zoom : 0;
-//	if (key == 18)
-//		frac->choise = 1;
-//	else if (key == 19)
-//		frac->choise = 2;
-//	else if (key == 13)
-//		frac->w = (frac->w + 1) % 2;
-//	if (key == 69 && frac->speed < 10)
-//		frac->speed++;
-//	else if (key == 78 && frac->speed > 2)
-//		frac->speed--;
-
 	color(frac);
 	return (0);
 }
 
 int 	color(t_fractol *frac)
 {
-//	int 	red;
-//	int 	green;
-//	int 	blue;
-//
-//	printf("red->[%d] green->[%d] blue->[%d]\n", (frac->color >> 16) & 0xFF, (frac->color >> 8) & 0xFF, (frac->color & 0xFF));
-//	red = (frac->color >> 16) & 0xFF;
-//	green = (frac->color >> 8) & 0xFF;
-//	blue = frac->color & 0xFF;
-//	if (frac->w == 1)
-//	{
-//		if (red <= 250 - frac->speed - 10 && frac->r == 0)
-//			red += frac->speed;
-//		else if (green <= 250 - frac->speed - 10 && frac->g == 0)
-//			green += frac->speed;
-//		else if (blue <= 250 - frac->speed - 10 && frac->b == 0)
-//			blue += frac->speed;
-//		else if (blue >= 250 - frac->speed - 10 || frac->b == 1) {
-//			frac->b = 1;
-//			if (blue <= frac->speed + 10) {
-//				frac->b = 2;
-//				frac->g = 0;
-//			}
-//			blue -= frac->speed;
-//		} else if (green >= 250 - frac->speed - 10 || frac->g == 1) {
-//			frac->g = 1;
-//			if (green <= frac->speed + 10) {
-//				frac->g = 2;
-//				frac->r = 0;
-//			}
-//			green -= frac->speed;
-//		} else if (red >= 250 - frac->speed - 10 || frac->r == 1) {
-//			frac->r = 1;
-//			if (red <= frac->speed + 1) {
-//				frac->r = 2;
-//				frac->b = 0;
-//			}
-//			red -= frac->speed;
-//		}
-//	}
-//	frac->color = (red << 16) | (green << 8) | blue;
+	int 	red;
+	int 	green;
+	int 	blue;
+
+	red = (frac->color >> 16) & 0xFF;
+	green = (frac->color >> 8) & 0xFF;
+	blue = frac->color & 0xFF;
+	if (frac->w == 1)
+	{
+		if (red <= 250 && frac->r == 0)
+			red += 1;
+		else if (green <= 250 && frac->g == 0)
+			green += 1;
+		else if (blue <= 250 && frac->b == 0)
+			blue += 1;
+		else if (blue >= 250 || frac->b == 1)
+		{
+			frac->b = 1;
+			if (blue <= 10)
+			{
+				frac->b = 2;
+				frac->g = 0;
+			}
+			blue -= 1;
+		} else if (green >= 250 || frac->g == 1)
+		{
+			frac->g = 1;
+			if (green <= 10) {
+				frac->g = 2;
+				frac->r = 0;
+			}
+			green -= 1;
+		} else if (red >= 250 || frac->r == 1)
+		{
+			frac->r = 1;
+			if (red <= 10)
+			{
+				frac->r = 2;
+				frac->b = 0;
+			}
+			red -= 1;
+		}
+	}
+	frac->color = (red << 16) | (green << 8) | blue;
 	mlx_clear_window(frac->mlx_ptr, frac->win_ptr);
 	if (frac->numfrac == 1)
 		mandelbrot(frac);
+	else if (frac->numfrac == 2)
+		julia(frac);
+	else if (frac->numfrac == 3)
+		ship(frac);
+	else if (frac->numfrac == 4)
+		mandelbrot_x(frac);
 	return (0);
 }
 

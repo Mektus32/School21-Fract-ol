@@ -16,48 +16,40 @@ int 	ft_check_input(int ac, char **av, t_fractol *frac)
 {
 	int 	i;
 
-	i = 1;
-	while (i < ac)
-	{
-		if (!ft_strcmp("Mandelbrot", av[i]))
+		if (!ft_strcmp("Mandelbrot", av[1]))
 			return (1);
-		if (!ft_strcmp("Julia", av[i]))
+		else if (!ft_strcmp("Julia", av[1]))
 			return (2);
-		if (!ft_strcmp("Ship", av[i]))
+		else if (!ft_strcmp("Ship", av[1]))
 			return (3);
-		i++;
-	}
-	write(1, "./fractol [Mandelbrot, Julia, Ship]\n", 36);
+		else if (!ft_strcmp("Mandelbrot_X", av[1]))
+			return (4);
+	write(1, "./fractol [Mandelbrot, Julia, Ship, Mandelbrot_X]\n", 49);
 	free(frac);
 	exit(0);
 }
 
 void	ft_init_win(t_fractol *frac)
 {
-	frac->mlx_ptr = mlx_init();
-	if (frac->numfrac == 1)
-		frac->win_ptr = mlx_new_window(frac->mlx_ptr, WIDTH, HEIGHT, "Mandelbrot");
-	else if (frac->numfrac == 2)
-		frac->win_ptr = mlx_new_window(frac->mlx_ptr, WIDTH, HEIGHT, "Julia");
-	else if (frac->numfrac == 3)
-		frac->win_ptr = mlx_new_window(frac->mlx_ptr, WIDTH, HEIGHT, "Ship");
+	!frac->mlx_ptr ? frac->mlx_ptr = mlx_init() : 0;
+	!frac->win_ptr ? frac->win_ptr = mlx_new_window(frac->mlx_ptr, WIDTH, HEIGHT, "Fractol") : 0;
 	frac->color = 0x9914FF;
-	frac->image = ft_memalloc(sizeof(t_image));
+	!frac->image ? frac->image = ft_memalloc(sizeof(t_image)) : 0;
 	frac->image->bpp = 32;
 	frac->image->endian = 0;
 	frac->image->sizeline = WIDTH;
-	frac->image->img_ptr = mlx_new_image(frac->mlx_ptr, WIDTH, HEIGHT);
-	frac->image->img_data = (int*)mlx_get_data_addr(frac->image->img_ptr,
-	&frac->image->bpp, &frac->image->sizeline, &frac->image->endian);
+	!frac->image->img_ptr ? frac->image->img_ptr = mlx_new_image(frac->mlx_ptr, WIDTH, HEIGHT) : 0;
+	!frac->image->img_data ? frac->image->img_data = (int*)mlx_get_data_addr(frac->image->img_ptr,
+	&frac->image->bpp, &frac->image->sizeline, &frac->image->endian) : 0;
 	frac->iterations = 10;
 	frac->p = 3;
 	frac->zoom = 250;
 	frac->iterations = 10;
-	frac->movex = 0;
-	frac->movey = 0;
-	frac->x0 = 0;
-	frac->y0 = 0;
 	frac->move = 1;
+	frac->choise = 0;
+	frac->w = 0;
+	frac->movey = 0;
+	frac->movex = 0;
 }
 
 int 	main(int ac, char **av)
@@ -66,25 +58,20 @@ int 	main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		write(1, "./fractol Mandelbrot, Julia, Ship]\n", 35);
+		write(1, "./fractol Mandelbrot, Julia, Ship, Mandelbrot_X]\n", 49);
 		return (0);
 	}
 	frac = ft_memalloc(sizeof(t_fractol));
 	frac->numfrac = ft_check_input(ac, av, frac);
-	printf("numfrac->[%d]\n", frac->numfrac);
 	ft_init_win(frac);
 	if (frac->numfrac == 1)
 		mandelbrot(frac);
-//	for (int i = 0; i < HEIGHT * 4; i++)
-//	{
-//		for (int j = 0; j < WIDTH; j += 4)
-//		{
-//			frac->cart[i * WIDTH + j] += i;
-//			frac->cart[i * WIDTH + j + 1] += 0;
-//			frac->cart[i * WIDTH + j + 2] += i;
-//		}
-//	}
-	mlx_put_image_to_window(frac->mlx_ptr, frac->win_ptr, frac->image->img_ptr, 0, 0);
+	else if (frac->numfrac == 2)
+		julia(frac);
+	else if (frac->numfrac == 3)
+		ship(frac);
+	else if (frac->numfrac == 4)
+		mandelbrot_x(frac);
 	ft_key_hook(frac);
 	mlx_loop(frac->mlx_ptr);
 	return (0);

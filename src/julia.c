@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojessi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/26 15:10:24 by ojessi            #+#    #+#             */
-/*   Updated: 2019/07/26 15:10:26 by ojessi           ###   ########.fr       */
+/*   Created: 2019/07/27 14:21:38 by ojessi            #+#    #+#             */
+/*   Updated: 2019/07/27 14:21:39 by ojessi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_calc_mand(t_fractol *frac, int *x, double *b, int *y)
+void	ft_calc_julia(t_fractol *frac, int *x, double *b, int *y)
 {
 	int		i;
 	double	a;
@@ -22,13 +22,13 @@ void	ft_calc_mand(t_fractol *frac, int *x, double *b, int *y)
 
 	a = -(2.5 - (*x / (frac->zoom) + frac->movex));
 	i = -1;
-	x0 = 0;
-	y0 = 0;
+	x0 = a;
+	y0 = *b;
 	while (++i < frac->iterations)
 	{
 		t = x0;
-		x0 = (x0 * x0) - (y0 * y0) + a;
-		y0 = (2 * t * y0) + *b;
+		x0 = (x0 * x0) - (y0 * y0) + frac->x0 / WIDTH;
+		y0 = (2 * t * y0) + frac->y0 / HEIGHT;
 		if (x0 * x0 + y0 * y0 > 4)
 			break;
 	}
@@ -54,7 +54,7 @@ void	ft_calc_mand(t_fractol *frac, int *x, double *b, int *y)
 	}
 }
 
-void	mandelbrot(t_fractol *frac)
+void		julia(t_fractol *frac)
 {
 	int 	x;
 	int 	y;
@@ -63,10 +63,10 @@ void	mandelbrot(t_fractol *frac)
 	y = -1;
 	while (++y < HEIGHT)
 	{
-		b = -1.25 + (y / (frac->zoom) + frac->movey);
+		b = -1.25 + (y / frac->zoom + frac->movey);
 		x = -1;
 		while (++x < WIDTH)
-			ft_calc_mand(frac, &x, &b, &y);
+			ft_calc_julia(frac, &x, &b, &y);
 	}
 	mlx_put_image_to_window(frac->mlx_ptr, frac->win_ptr, frac->image->img_ptr, 0, 0);
 }

@@ -41,12 +41,11 @@ typedef	struct		s_fractol
 	double		zoom;
 	double		movex;
 	double		movey;
-	double		x0;
-	double		y0;
-	int			move;
-	int			w;
-	int			choise;
-	int			speed;
+	double		x0;//move julia
+	double		y0;//move julia
+	int			move;//движения джулии
+	int			w;//Переливание цвета
+	int			choise;//Переключение цвета
 	int 		r;
 	int 		g;
 	int			b;
@@ -57,5 +56,8 @@ void				ft_init_win(t_fractol *frac);
 void				mandelbrot(t_fractol *frac);
 double				ft_pow_comp(double x, double y, int n, double *v);
 void				ft_key_hook(t_fractol *frac);
+void				julia(t_fractol *frac);
+void				ship(t_fractol *frac);
+void				mandelbrot_x(t_fractol *frac);
 
 #endif

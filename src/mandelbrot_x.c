@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   mandelbrot_x.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojessi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/26 15:10:24 by ojessi            #+#    #+#             */
-/*   Updated: 2019/07/26 15:10:26 by ojessi           ###   ########.fr       */
+/*   Created: 2019/07/27 14:56:19 by ojessi            #+#    #+#             */
+/*   Updated: 2019/07/27 14:56:21 by ojessi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_calc_mand(t_fractol *frac, int *x, double *b, int *y)
+void	ft_calc_manx(t_fractol *frac, int *x, double *b, int *y)
 {
 	int		i;
 	double	a;
-	double	t;
 	double	x0;
 	double	y0;
 
@@ -26,9 +25,8 @@ void	ft_calc_mand(t_fractol *frac, int *x, double *b, int *y)
 	y0 = 0;
 	while (++i < frac->iterations)
 	{
-		t = x0;
-		x0 = (x0 * x0) - (y0 * y0) + a;
-		y0 = (2 * t * y0) + *b;
+		x0 = ft_pow_comp(x0, y0, frac->p, &y0) + a;
+		y0 += *b;
 		if (x0 * x0 + y0 * y0 > 4)
 			break;
 	}
@@ -54,7 +52,7 @@ void	ft_calc_mand(t_fractol *frac, int *x, double *b, int *y)
 	}
 }
 
-void	mandelbrot(t_fractol *frac)
+void	mandelbrot_x(t_fractol *frac)
 {
 	int 	x;
 	int 	y;
@@ -63,10 +61,11 @@ void	mandelbrot(t_fractol *frac)
 	y = -1;
 	while (++y < HEIGHT)
 	{
-		b = -1.25 + (y / (frac->zoom) + frac->movey);
+		b = -1.25 + (y / frac->zoom + frac->movey);
 		x = -1;
 		while (++x < WIDTH)
-			ft_calc_mand(frac, &x, &b, &y);
+			ft_calc_manx(frac, &x, &b, &y);
 	}
 	mlx_put_image_to_window(frac->mlx_ptr, frac->win_ptr, frac->image->img_ptr, 0, 0);
 }
+

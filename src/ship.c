@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   ship.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojessi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/26 15:10:24 by ojessi            #+#    #+#             */
-/*   Updated: 2019/07/26 15:10:26 by ojessi           ###   ########.fr       */
+/*   Created: 2019/07/27 14:37:42 by ojessi            #+#    #+#             */
+/*   Updated: 2019/07/27 14:37:43 by ojessi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_calc_mand(t_fractol *frac, int *x, double *b, int *y)
+void	ft_calc_ship(t_fractol *frac, int *x, double *b, int *y)
 {
 	int		i;
 	double	a;
@@ -27,8 +27,8 @@ void	ft_calc_mand(t_fractol *frac, int *x, double *b, int *y)
 	while (++i < frac->iterations)
 	{
 		t = x0;
-		x0 = (x0 * x0) - (y0 * y0) + a;
-		y0 = (2 * t * y0) + *b;
+		x0 = fabs((x0 * x0) - (y0 * y0) + a);
+		y0 = fabs((2 * t * y0) + *b);
 		if (x0 * x0 + y0 * y0 > 4)
 			break;
 	}
@@ -54,7 +54,7 @@ void	ft_calc_mand(t_fractol *frac, int *x, double *b, int *y)
 	}
 }
 
-void	mandelbrot(t_fractol *frac)
+void	ship(t_fractol *frac)
 {
 	int 	x;
 	int 	y;
@@ -66,7 +66,7 @@ void	mandelbrot(t_fractol *frac)
 		b = -1.25 + (y / (frac->zoom) + frac->movey);
 		x = -1;
 		while (++x < WIDTH)
-			ft_calc_mand(frac, &x, &b, &y);
+			ft_calc_ship(frac, &x, &b, &y);
 	}
 	mlx_put_image_to_window(frac->mlx_ptr, frac->win_ptr, frac->image->img_ptr, 0, 0);
 }
