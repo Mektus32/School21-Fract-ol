@@ -99,4 +99,6 @@ add_executable(fractol
         libft/ft_ultoa.c
         libft/ft_ultoa_base.c
         libft/get_next_line.c
-        src/main.c)
+        src/main.c
+        src/init_cl.c
+        src/fractol.cl)

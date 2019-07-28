@@ -89,6 +89,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/ojessi/Desktop/fractol/libft/ft_ultoa.c" "/Users/ojessi/Desktop/fractol/cmake-build-debug/CMakeFiles/fractol.dir/libft/ft_ultoa.c.o"
   "/Users/ojessi/Desktop/fractol/libft/ft_ultoa_base.c" "/Users/ojessi/Desktop/fractol/cmake-build-debug/CMakeFiles/fractol.dir/libft/ft_ultoa_base.c.o"
   "/Users/ojessi/Desktop/fractol/libft/get_next_line.c" "/Users/ojessi/Desktop/fractol/cmake-build-debug/CMakeFiles/fractol.dir/libft/get_next_line.c.o"
+  "/Users/ojessi/Desktop/fractol/src/init_cl.c" "/Users/ojessi/Desktop/fractol/cmake-build-debug/CMakeFiles/fractol.dir/src/init_cl.c.o"
   "/Users/ojessi/Desktop/fractol/src/main.c" "/Users/ojessi/Desktop/fractol/cmake-build-debug/CMakeFiles/fractol.dir/src/main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")

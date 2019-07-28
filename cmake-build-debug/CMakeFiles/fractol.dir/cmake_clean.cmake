@@ -85,6 +85,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/fractol.dir/libft/ft_ultoa_base.c.o"
   "CMakeFiles/fractol.dir/libft/get_next_line.c.o"
   "CMakeFiles/fractol.dir/src/main.c.o"
+  "CMakeFiles/fractol.dir/src/init_cl.c.o"
   "fractol.pdb"
   "fractol"
 )

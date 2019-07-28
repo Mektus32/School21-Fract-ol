@@ -16,12 +16,7 @@ NAME = fractol
 
 # src / obj files
 SRC =	main.c \
-		mandelbrot.c \
-		comp_func.c \
-		key_hook.c \
-		julia.c \
-		ship.c \
-		mandelbrot_x.c
+		init_cl.c \
 
 
 OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
@@ -37,7 +32,7 @@ FT_INC = -I ./libft
 FT_LNK = ./libft/libft.a
 
 # mlx library
-MLX_LNK = -lmlx -framework OpenGL -framework AppKit
+MLX_LNK = -lmlx -framework OpenGL -framework OpenCL -framework AppKit
 
 # directories
 SRCDIR = ./src/

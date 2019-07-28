@@ -2418,6 +2418,33 @@ libft/get_next_line.c.s:
 	$(MAKE) -f CMakeFiles/fractol.dir/build.make CMakeFiles/fractol.dir/libft/get_next_line.c.s
 .PHONY : libft/get_next_line.c.s
 
+src/init_cl.o: src/init_cl.c.o
+
+.PHONY : src/init_cl.o
+
+# target to build an object file
+src/init_cl.c.o:
+	$(MAKE) -f CMakeFiles/fractol.dir/build.make CMakeFiles/fractol.dir/src/init_cl.c.o
+.PHONY : src/init_cl.c.o
+
+src/init_cl.i: src/init_cl.c.i
+
+.PHONY : src/init_cl.i
+
+# target to preprocess a source file
+src/init_cl.c.i:
+	$(MAKE) -f CMakeFiles/fractol.dir/build.make CMakeFiles/fractol.dir/src/init_cl.c.i
+.PHONY : src/init_cl.c.i
+
+src/init_cl.s: src/init_cl.c.s
+
+.PHONY : src/init_cl.s
+
+# target to generate assembly for a file
+src/init_cl.c.s:
+	$(MAKE) -f CMakeFiles/fractol.dir/build.make CMakeFiles/fractol.dir/src/init_cl.c.s
+.PHONY : src/init_cl.c.s
+
 src/main.o: src/main.c.o
 
 .PHONY : src/main.o
@@ -2709,6 +2736,9 @@ help:
 	@echo "... libft/get_next_line.o"
 	@echo "... libft/get_next_line.i"
 	@echo "... libft/get_next_line.s"
+	@echo "... src/init_cl.o"
+	@echo "... src/init_cl.i"
+	@echo "... src/init_cl.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
