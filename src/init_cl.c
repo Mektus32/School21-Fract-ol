@@ -79,18 +79,7 @@ void	ft_create_kernels(t_cl *cl)
 	sizeof(cl_double), NULL, &cl->ret);
 	cl->iterations = clCreateBuffer(cl->context, CL_MEM_READ_WRITE,
 	sizeof(cl_int), NULL, &cl->ret);
-	cl->choise = clCreateBuffer(cl->context, CL_MEM_READ_WRITE, sizeof(cl_int),
-	NULL, &cl->ret);
-	cl->color = clCreateBuffer(cl->context, CL_MEM_READ_WRITE, sizeof(cl_int),
-	NULL, &cl->ret);
-	cl->fracx0 = clCreateBuffer(cl->context, CL_MEM_READ_WRITE,
-	sizeof(cl_double),
-	NULL, &cl->ret);
-	cl->fracy0 = clCreateBuffer(cl->context, CL_MEM_READ_WRITE,
-	sizeof(cl_double),
-	NULL, &cl->ret);
-	cl->p = clCreateBuffer(cl->context, CL_MEM_READ_WRITE, sizeof(cl_int),
-	NULL, &cl->ret);
+	ft_next_create_kernels(cl);
 }
 
 void	ft_get_cl(t_cl *cl)

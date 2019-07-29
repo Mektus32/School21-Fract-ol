@@ -89,5 +89,3 @@ void	ft_set_kernel_mandelbrot_x(t_cl *cl)
 	cl->ret = clSetKernelArg(cl->mandelbrot_x, 7, sizeof(cl_mem),
 	(void*)&cl->p);
 }
-
-

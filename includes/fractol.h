@@ -26,13 +26,13 @@
 # include <time.h>
 # include <OpenCL/OpenCL.h>
 
-typedef	struct 		s_image
+typedef struct		s_image
 {
 	void		*img_ptr;
-	int 		*img_data;
-	int 		bpp;
-	int 		sizeline;
-	int 		endian;
+	int			*img_data;
+	int			bpp;
+	int			sizeline;
+	int			endian;
 }					t_image;
 
 typedef	struct		s_cl
@@ -71,24 +71,25 @@ typedef	struct		s_fractol
 	void		*win_ptr;
 	t_cl		*cl;
 	t_image		*image;
-	int 		color;
-	int 		numfrac;
-	int 		iterations;
-	int 		p;//Степень в формуле
+	int			color;
+	int			numfrac;
+	int			iterations;
+	int			p;
 	double		zoom;
 	double		movex;
 	double		movey;
-	double		x0;//move julia
-	double		y0;//move julia
-	int			move;//движения джулии
-	int			w;//Переливание цвета
-	int			choise;//Переключение цвета
-	int 		r;
-	int 		g;
+	double		x0;
+	double		y0;
+	int			move;
+	int			w;
+	int			choise;
+	int			r;
+	int			g;
 	int			b;
 }					t_fractol;
 
-int					ft_check_input(int ac, char **av, t_fractol *frac);
+int					ft_check_input(char **av, t_fractol *frac);
+int					color(t_fractol *frac);
 void				ft_init_win(t_fractol *frac);
 void				ft_key_hook(t_fractol *frac);
 void				ft_init_cl(t_fractol *frac);
@@ -100,5 +101,11 @@ void				ft_set_kernel_mandelbrot_x(t_cl *cl);
 void				ft_choise_frac(t_fractol *frac);
 void				ft_print_menu(t_fractol *frac);
 void				ft_next_choise_frac(t_fractol *frac);
+void				ft_next_create_kernels(t_cl *cl);
+void				ft_next_keyboard(int key, t_fractol *frac);
+void				ft_next_next_keyboard(int key, t_fractol *frac);
+void				ft_blue(int *blue, t_fractol *frac);
+void				ft_red(int *red, t_fractol *frac);
+void				ft_green(int *green, t_fractol *frac);
 
 #endif

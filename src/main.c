@@ -38,7 +38,7 @@ void	ft_print_menu(t_fractol *frac)
 	free(pow);
 }
 
-int		ft_check_input(int ac, char **av, t_fractol *frac)
+int		ft_check_input(char **av, t_fractol *frac)
 {
 	if (!ft_strcmp("Mandelbrot", av[1]))
 		return (1);
@@ -92,7 +92,7 @@ int		main(int ac, char **av)
 		return (0);
 	}
 	frac = ft_memalloc(sizeof(t_fractol));
-	frac->numfrac = ft_check_input(ac, av, frac);
+	frac->numfrac = ft_check_input(av, frac);
 	ft_init_win(frac);
 	ft_init_cl(frac);
 	ft_key_hook(frac);
