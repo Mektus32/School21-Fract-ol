@@ -1188,6 +1188,45 @@ CMakeFiles/fractol.dir/src/init_cl.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/fractol.dir/src/init_cl.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ojessi/Desktop/fractol/src/init_cl.c -o CMakeFiles/fractol.dir/src/init_cl.c.s
 
+CMakeFiles/fractol.dir/src/frac_params.c.o: CMakeFiles/fractol.dir/flags.make
+CMakeFiles/fractol.dir/src/frac_params.c.o: ../src/frac_params.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ojessi/Desktop/fractol/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Building C object CMakeFiles/fractol.dir/src/frac_params.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/fractol.dir/src/frac_params.c.o   -c /Users/ojessi/Desktop/fractol/src/frac_params.c
+
+CMakeFiles/fractol.dir/src/frac_params.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/fractol.dir/src/frac_params.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ojessi/Desktop/fractol/src/frac_params.c > CMakeFiles/fractol.dir/src/frac_params.c.i
+
+CMakeFiles/fractol.dir/src/frac_params.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/fractol.dir/src/frac_params.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ojessi/Desktop/fractol/src/frac_params.c -o CMakeFiles/fractol.dir/src/frac_params.c.s
+
+CMakeFiles/fractol.dir/src/key_hook.c.o: CMakeFiles/fractol.dir/flags.make
+CMakeFiles/fractol.dir/src/key_hook.c.o: ../src/key_hook.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ojessi/Desktop/fractol/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_89) "Building C object CMakeFiles/fractol.dir/src/key_hook.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/fractol.dir/src/key_hook.c.o   -c /Users/ojessi/Desktop/fractol/src/key_hook.c
+
+CMakeFiles/fractol.dir/src/key_hook.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/fractol.dir/src/key_hook.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ojessi/Desktop/fractol/src/key_hook.c > CMakeFiles/fractol.dir/src/key_hook.c.i
+
+CMakeFiles/fractol.dir/src/key_hook.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/fractol.dir/src/key_hook.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ojessi/Desktop/fractol/src/key_hook.c -o CMakeFiles/fractol.dir/src/key_hook.c.s
+
+CMakeFiles/fractol.dir/src/cl_and_hook.c.o: CMakeFiles/fractol.dir/flags.make
+CMakeFiles/fractol.dir/src/cl_and_hook.c.o: ../src/cl_and_hook.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ojessi/Desktop/fractol/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_90) "Building C object CMakeFiles/fractol.dir/src/cl_and_hook.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/fractol.dir/src/cl_and_hook.c.o   -c /Users/ojessi/Desktop/fractol/src/cl_and_hook.c
+
+CMakeFiles/fractol.dir/src/cl_and_hook.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/fractol.dir/src/cl_and_hook.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ojessi/Desktop/fractol/src/cl_and_hook.c > CMakeFiles/fractol.dir/src/cl_and_hook.c.i
+
+CMakeFiles/fractol.dir/src/cl_and_hook.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/fractol.dir/src/cl_and_hook.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ojessi/Desktop/fractol/src/cl_and_hook.c -o CMakeFiles/fractol.dir/src/cl_and_hook.c.s
+
 # Object files for target fractol
 fractol_OBJECTS = \
 "CMakeFiles/fractol.dir/libft/ft_abs.c.o" \
@@ -1276,7 +1315,10 @@ fractol_OBJECTS = \
 "CMakeFiles/fractol.dir/libft/ft_ultoa_base.c.o" \
 "CMakeFiles/fractol.dir/libft/get_next_line.c.o" \
 "CMakeFiles/fractol.dir/src/main.c.o" \
-"CMakeFiles/fractol.dir/src/init_cl.c.o"
+"CMakeFiles/fractol.dir/src/init_cl.c.o" \
+"CMakeFiles/fractol.dir/src/frac_params.c.o" \
+"CMakeFiles/fractol.dir/src/key_hook.c.o" \
+"CMakeFiles/fractol.dir/src/cl_and_hook.c.o"
 
 # External object files for target fractol
 fractol_EXTERNAL_OBJECTS =
@@ -1368,9 +1410,12 @@ fractol: CMakeFiles/fractol.dir/libft/ft_ultoa_base.c.o
 fractol: CMakeFiles/fractol.dir/libft/get_next_line.c.o
 fractol: CMakeFiles/fractol.dir/src/main.c.o
 fractol: CMakeFiles/fractol.dir/src/init_cl.c.o
+fractol: CMakeFiles/fractol.dir/src/frac_params.c.o
+fractol: CMakeFiles/fractol.dir/src/key_hook.c.o
+fractol: CMakeFiles/fractol.dir/src/cl_and_hook.c.o
 fractol: CMakeFiles/fractol.dir/build.make
 fractol: CMakeFiles/fractol.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ojessi/Desktop/fractol/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Linking C executable fractol"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ojessi/Desktop/fractol/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_91) "Linking C executable fractol"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/fractol.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

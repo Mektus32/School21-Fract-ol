@@ -60,6 +60,9 @@ typedef	struct		s_cl
 	cl_mem				iterations;
 	cl_mem				choise;
 	cl_mem				color;
+	cl_mem				fracx0;
+	cl_mem				fracy0;
+	cl_mem				p;
 }					t_cl;
 
 typedef	struct		s_fractol
@@ -87,13 +90,15 @@ typedef	struct		s_fractol
 
 int					ft_check_input(int ac, char **av, t_fractol *frac);
 void				ft_init_win(t_fractol *frac);
-void				mandelbrot(t_fractol *frac);
-double				ft_pow_comp(double x, double y, int n, double *v);
 void				ft_key_hook(t_fractol *frac);
-void				julia(t_fractol *frac);
-void				ship(t_fractol *frac);
-void				mandelbrot_x(t_fractol *frac);
 void				ft_init_cl(t_fractol *frac);
 void				ft_change_params(t_fractol *frac);
+void				ft_set_kernel_mandelbrot(t_cl *cl);
+void				ft_set_kernel_julia(t_cl *cl);
+void				ft_set_kernel_ship(t_cl *cl);
+void				ft_set_kernel_mandelbrot_x(t_cl *cl);
+void				ft_choise_frac(t_fractol *frac);
+void				ft_print_menu(t_fractol *frac);
+void				ft_next_choise_frac(t_fractol *frac);
 
 #endif

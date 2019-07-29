@@ -6,13 +6,39 @@
 /*   By: ojessi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 19:04:49 by ojessi            #+#    #+#             */
-/*   Updated: 2019/07/28 19:04:51 by ojessi           ###   ########.fr       */
+/*   Updated: 2019/07/29 20:32:36 by ojessi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int 	ft_check_input(int ac, char **av, t_fractol *frac)
+void	ft_print_menu(t_fractol *frac)
+{
+	char		*iter;
+	char		*pow;
+
+	iter = ft_free_join(ft_free_strjoin_rev("Iter[",
+	ft_itoa(frac->iterations)), "]   -> '_' & '='");
+	pow = ft_free_join(ft_free_strjoin_rev("Pow[",
+	ft_itoa(frac->p)), "]    -> '-' & '+'");
+	mlx_string_put(frac->mlx_ptr, frac->win_ptr, 0, 0, frac->color, "Menu");
+	mlx_string_put(frac->mlx_ptr, frac->win_ptr, 0, 25, frac->color,
+	"Fractol    -> [!,@,#,$]");
+	mlx_string_put(frac->mlx_ptr, frac->win_ptr, 0, 50, frac->color,
+	"Color      -> 'c'");
+	mlx_string_put(frac->mlx_ptr, frac->win_ptr, 0, 75, frac->color, iter);
+	mlx_string_put(frac->mlx_ptr, frac->win_ptr, 0, 100, frac->color,
+	frac->w ? "Wave[On]  -> 'w'" : "Wave[Off]  -> 'w'");
+	mlx_string_put(frac->mlx_ptr, frac->win_ptr, 0, 125, frac->color,
+	"Gamma      -> [1,2,3]");
+	mlx_string_put(frac->mlx_ptr, frac->win_ptr, 0, 150, frac->color, pow);
+	mlx_string_put(frac->mlx_ptr, frac->win_ptr, 0, 175, frac->color,
+	frac->move ? "Julia[move]-> LMB" : "Julia[stop]-> LMB");
+	free(iter);
+	free(pow);
+}
+
+int		ft_check_input(int ac, char **av, t_fractol *frac)
 {
 	if (!ft_strcmp("Mandelbrot", av[1]))
 		return (1);
@@ -40,18 +66,20 @@ void	ft_init_win(t_fractol *frac)
 	frac->image->sizeline = WIDTH;
 	!frac->image->img_ptr ? frac->image->img_ptr = mlx_new_image(frac->mlx_ptr,
 			WIDTH, HEIGHT) : 0;
-	!frac->image->img_data ? frac->image->img_data = (int*)mlx_get_data_addr
-	(frac->image->img_ptr, &frac->image->bpp, &frac->image->sizeline,
-			&frac->image->endian) : 0;
+	!frac->image->img_data ? frac->image->img_data =
+	(int*)mlx_get_data_addr(frac->image->img_ptr,
+	&frac->image->bpp, &frac->image->sizeline, &frac->image->endian) : 0;
 	frac->iterations = 10;
-	frac->p = 3;
-	frac->zoom = 250;
-	frac->iterations = 10;
-	frac->move = 1;
+	frac->p = 2;
+	frac->zoom = 150;
+	frac->iterations = 50;
+	frac->move = 0;
 	frac->choise = 0;
 	frac->w = 0;
-	frac->movey = 0;
-	frac->movex = 0;
+	frac->movey = -0.70;
+	frac->movex = -1;
+	frac->x0 = 1.25;
+	frac->y0 = 0.75;
 }
 
 int		main(int ac, char **av)
@@ -67,5 +95,7 @@ int		main(int ac, char **av)
 	frac->numfrac = ft_check_input(ac, av, frac);
 	ft_init_win(frac);
 	ft_init_cl(frac);
+	ft_key_hook(frac);
+	mlx_loop(frac->mlx_ptr);
 	return (0);
 }

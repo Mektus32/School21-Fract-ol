@@ -2418,6 +2418,60 @@ libft/get_next_line.c.s:
 	$(MAKE) -f CMakeFiles/fractol.dir/build.make CMakeFiles/fractol.dir/libft/get_next_line.c.s
 .PHONY : libft/get_next_line.c.s
 
+src/cl_and_hook.o: src/cl_and_hook.c.o
+
+.PHONY : src/cl_and_hook.o
+
+# target to build an object file
+src/cl_and_hook.c.o:
+	$(MAKE) -f CMakeFiles/fractol.dir/build.make CMakeFiles/fractol.dir/src/cl_and_hook.c.o
+.PHONY : src/cl_and_hook.c.o
+
+src/cl_and_hook.i: src/cl_and_hook.c.i
+
+.PHONY : src/cl_and_hook.i
+
+# target to preprocess a source file
+src/cl_and_hook.c.i:
+	$(MAKE) -f CMakeFiles/fractol.dir/build.make CMakeFiles/fractol.dir/src/cl_and_hook.c.i
+.PHONY : src/cl_and_hook.c.i
+
+src/cl_and_hook.s: src/cl_and_hook.c.s
+
+.PHONY : src/cl_and_hook.s
+
+# target to generate assembly for a file
+src/cl_and_hook.c.s:
+	$(MAKE) -f CMakeFiles/fractol.dir/build.make CMakeFiles/fractol.dir/src/cl_and_hook.c.s
+.PHONY : src/cl_and_hook.c.s
+
+src/frac_params.o: src/frac_params.c.o
+
+.PHONY : src/frac_params.o
+
+# target to build an object file
+src/frac_params.c.o:
+	$(MAKE) -f CMakeFiles/fractol.dir/build.make CMakeFiles/fractol.dir/src/frac_params.c.o
+.PHONY : src/frac_params.c.o
+
+src/frac_params.i: src/frac_params.c.i
+
+.PHONY : src/frac_params.i
+
+# target to preprocess a source file
+src/frac_params.c.i:
+	$(MAKE) -f CMakeFiles/fractol.dir/build.make CMakeFiles/fractol.dir/src/frac_params.c.i
+.PHONY : src/frac_params.c.i
+
+src/frac_params.s: src/frac_params.c.s
+
+.PHONY : src/frac_params.s
+
+# target to generate assembly for a file
+src/frac_params.c.s:
+	$(MAKE) -f CMakeFiles/fractol.dir/build.make CMakeFiles/fractol.dir/src/frac_params.c.s
+.PHONY : src/frac_params.c.s
+
 src/init_cl.o: src/init_cl.c.o
 
 .PHONY : src/init_cl.o
@@ -2444,6 +2498,33 @@ src/init_cl.s: src/init_cl.c.s
 src/init_cl.c.s:
 	$(MAKE) -f CMakeFiles/fractol.dir/build.make CMakeFiles/fractol.dir/src/init_cl.c.s
 .PHONY : src/init_cl.c.s
+
+src/key_hook.o: src/key_hook.c.o
+
+.PHONY : src/key_hook.o
+
+# target to build an object file
+src/key_hook.c.o:
+	$(MAKE) -f CMakeFiles/fractol.dir/build.make CMakeFiles/fractol.dir/src/key_hook.c.o
+.PHONY : src/key_hook.c.o
+
+src/key_hook.i: src/key_hook.c.i
+
+.PHONY : src/key_hook.i
+
+# target to preprocess a source file
+src/key_hook.c.i:
+	$(MAKE) -f CMakeFiles/fractol.dir/build.make CMakeFiles/fractol.dir/src/key_hook.c.i
+.PHONY : src/key_hook.c.i
+
+src/key_hook.s: src/key_hook.c.s
+
+.PHONY : src/key_hook.s
+
+# target to generate assembly for a file
+src/key_hook.c.s:
+	$(MAKE) -f CMakeFiles/fractol.dir/build.make CMakeFiles/fractol.dir/src/key_hook.c.s
+.PHONY : src/key_hook.c.s
 
 src/main.o: src/main.c.o
 
@@ -2736,9 +2817,18 @@ help:
 	@echo "... libft/get_next_line.o"
 	@echo "... libft/get_next_line.i"
 	@echo "... libft/get_next_line.s"
+	@echo "... src/cl_and_hook.o"
+	@echo "... src/cl_and_hook.i"
+	@echo "... src/cl_and_hook.s"
+	@echo "... src/frac_params.o"
+	@echo "... src/frac_params.i"
+	@echo "... src/frac_params.s"
 	@echo "... src/init_cl.o"
 	@echo "... src/init_cl.i"
 	@echo "... src/init_cl.s"
+	@echo "... src/key_hook.o"
+	@echo "... src/key_hook.i"
+	@echo "... src/key_hook.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

@@ -101,4 +101,4 @@ add_executable(fractol
         libft/get_next_line.c
         src/main.c
         src/init_cl.c
-        src/fractol.cl)
+        src/fractol.cl src/frac_params.c src/key_hook.c src/cl_and_hook.c)

@@ -17,7 +17,9 @@ NAME = fractol
 # src / obj files
 SRC =	main.c \
 		init_cl.c \
-
+		key_hook.c \
+		frac_params.c \
+		cl_and_hook.c
 
 OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
 

@@ -357,10 +357,19 @@
 		<Unit filename="/Users/ojessi/Desktop/fractol/libft/includes/libft.h">
 			<Option target="fractol"/>
 		</Unit>
+		<Unit filename="/Users/ojessi/Desktop/fractol/src/cl_and_hook.c">
+			<Option target="fractol"/>
+		</Unit>
+		<Unit filename="/Users/ojessi/Desktop/fractol/src/frac_params.c">
+			<Option target="fractol"/>
+		</Unit>
 		<Unit filename="/Users/ojessi/Desktop/fractol/src/fractol.cl">
 			<Option target="fractol"/>
 		</Unit>
 		<Unit filename="/Users/ojessi/Desktop/fractol/src/init_cl.c">
+			<Option target="fractol"/>
+		</Unit>
+		<Unit filename="/Users/ojessi/Desktop/fractol/src/key_hook.c">
 			<Option target="fractol"/>
 		</Unit>
 		<Unit filename="/Users/ojessi/Desktop/fractol/src/main.c">

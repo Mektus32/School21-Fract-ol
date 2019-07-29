@@ -37,7 +37,7 @@ __kernel void mandelbrot(__global int *img_data, __global double *zoom,
 		__global int *choise, __global int *color)
 {
 	int 	index = get_global_id(0);
-	double	b = -1.25 + ((index / HEIGHT) / *zoom + *movey);
+	double	b = -1.25 + ((index / WIDTH) / *zoom + *movey);
 	double	a = -(2.5 - ((index % WIDTH) / *zoom + *movex));
 	int		i = -1;
 	double	x0 = 0.0;
@@ -52,21 +52,24 @@ __kernel void mandelbrot(__global int *img_data, __global double *zoom,
 		if (x0 * x0 + y0 * y0 > 4)
 			break;
 	}
-	if (i == iterations)
+	if (i == *iterations)
 		img_data[index] = 0x000000;
-	else if (*choise == 2)
-	{
-		if (i % 2 == 0)
-			img_data[index] = 0xFF0000;
-		else if (i % 3 == 0)
-			img_data[index] = 0x00FF00;
-		else if (i % 4 == 0)
-			img_data[index] = 0x0000FF;
-		else
-			img_data[index] = 0x9914FF;
-	}
 	else
-		img_data[index] = *color * i;
+	{
+		if (*choise == 1)
+			img_data[index] = 0xFFFFFF;
+		else if (*choise == 2)
+		{
+			if (i % 3 == 2)
+				img_data[index] = 0xFF0000;
+			else if (i % 3 == 1)
+				img_data[index] = 0x00FF00;
+			else
+				img_data[index] = 0x0000FF;
+		}
+		else
+			img_data[index] = *color * i;
+	}
 }
 
 __kernel void julia(__global int *img_data, __global double *zoom,
@@ -75,7 +78,7 @@ __kernel void julia(__global int *img_data, __global double *zoom,
 						 __global double *fracy0)
 {
 	int 	index = get_global_id(0);
-	double	b = -1.25 + ((index / HEIGHT) / *zoom + *movey);
+	double	b = -1.25 + ((index / WIDTH) / *zoom + *movey);
 	double	a = -(2.5 - ((index % WIDTH) / *zoom + *movex));
 	int		i = -1;
 	double	x0 = a;
@@ -90,21 +93,24 @@ __kernel void julia(__global int *img_data, __global double *zoom,
 		if (x0 * x0 + y0 * y0 > 4)
 			break;
 	}
-	if (i == iterations)
+	if (i == *iterations)
 		img_data[index] = 0x000000;
-	else if (*choise == 2)
-	{
-		if (i % 2 == 0)
-			img_data[index] = 0xFF0000;
-		else if (i % 3 == 0)
-			img_data[index] = 0x00FF00;
-		else if (i % 4 == 0)
-			img_data[index] = 0x0000FF;
-		else
-			img_data[index] = 0x9914FF;
-	}
 	else
-		img_data[index] = *color * i;
+	{
+		if (*choise == 1)
+			img_data[index] = 0xFFFFFF;
+		else if (*choise == 2)
+		{
+			if (i % 3 == 2)
+				img_data[index] = 0xFF0000;
+			else if (i % 3 == 1)
+				img_data[index] = 0x00FF00;
+			else
+				img_data[index] = 0x0000FF;
+		}
+		else
+			img_data[index] = *color * i;
+	}
 }
 
 __kernel void ship(__global int *img_data, __global double *zoom,
@@ -112,7 +118,7 @@ __kernel void ship(__global int *img_data, __global double *zoom,
 						 __global int *choise, __global int *color)
 {
 	int 	index = get_global_id(0);
-	double	b = -1.25 + ((index / HEIGHT) / *zoom + *movey);
+	double	b = -1.25 + ((index / WIDTH) / *zoom + *movey);
 	double	a = -(2.5 - ((index % WIDTH) / *zoom + *movex));
 	int		i = -1;
 	double	x0 = 0.0;
@@ -127,21 +133,24 @@ __kernel void ship(__global int *img_data, __global double *zoom,
 		if (x0 * x0 + y0 * y0 > 4)
 			break;
 	}
-	if (i == iterations)
+	if (i == *iterations)
 		img_data[index] = 0x000000;
-	else if (*choise == 2)
-	{
-		if (i % 2 == 0)
-			img_data[index] = 0xFF0000;
-		else if (i % 3 == 0)
-			img_data[index] = 0x00FF00;
-		else if (i % 4 == 0)
-			img_data[index] = 0x0000FF;
-		else
-			img_data[index] = 0x9914FF;
-	}
 	else
-		img_data[index] = *color * i;
+	{
+		if (*choise == 1)
+			img_data[index] = 0xFFFFFF;
+		else if (*choise == 2)
+		{
+			if (i % 3 == 2)
+				img_data[index] = 0xFF0000;
+			else if (i % 3 == 1)
+				img_data[index] = 0x00FF00;
+			else
+				img_data[index] = 0x0000FF;
+		}
+		else
+			img_data[index] = *color * i;
+	}
 }
 
 __kernel void mandelbrot_x(__global int *img_data, __global double *zoom,
@@ -149,7 +158,7 @@ __kernel void mandelbrot_x(__global int *img_data, __global double *zoom,
 						 __global int *choise, __global int *color, __global int *p)
 {
 	int 	index = get_global_id(0);
-	double	b = -1.25 + ((index / HEIGHT) / *zoom + *movey);
+	double	b = -1.25 + ((index / WIDTH) / *zoom + *movey);
 	double	a = -(2.5 - ((index % WIDTH) / *zoom + *movex));
 	int		i = -1;
 	double	x0 = 0.0;
@@ -162,19 +171,22 @@ __kernel void mandelbrot_x(__global int *img_data, __global double *zoom,
 		if (x0 * x0 + y0 * y0 > 4)
 			break;
 	}
-//	if (i == iterations)
-//		img_data[index] = 0x000000;
-//	else if (*choise == 2)
-//	{
-//		if (i % 2 == 0)
-//			img_data[index] = 0xFF0000;
-//		else if (i % 3 == 0)
-//			img_data[index] = 0x00FF00;
-//		else if (i % 4 == 0)
-//			img_data[index] = 0x0000FF;
-//		else
-//			img_data[index] = 0x9914FF;
-//	}
-//	else
-//		img_data[index] = *color * i;
+	if (i == *iterations)
+		img_data[index] = 0x000000;
+	else
+	{
+		if (*choise == 1)
+			img_data[index] = 0xFFFFFF;
+		else if (*choise == 2)
+		{
+			if (i % 3 == 2)
+				img_data[index] = 0xFF0000;
+			else if (i % 3 == 1)
+				img_data[index] = 0x00FF00;
+			else
+				img_data[index] = 0x0000FF;
+		}
+		else
+			img_data[index] = *color * i;
+	}
 }

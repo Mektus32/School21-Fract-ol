@@ -6,17 +6,11 @@
 /*   By: ojessi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 19:11:48 by ojessi            #+#    #+#             */
-/*   Updated: 2019/07/28 19:11:49 by ojessi           ###   ########.fr       */
+/*   Updated: 2019/07/29 20:34:39 by ojessi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void	ft_set_kernel_mandelbrot(t_cl *cl)
-{
-	cl->ret = clSetKernelArg(cl->mandelbrot, 0, sizeof(cl_mem),
-			(void*)&cl->img_data);
-}
 
 void	ft_change_params(t_fractol *frac)
 {
@@ -35,6 +29,38 @@ void	ft_change_params(t_fractol *frac)
 	frac->cl->choise, CL_TRUE, 0, sizeof(cl_int), &frac->choise, 0, NULL, NULL);
 	frac->cl->ret = clEnqueueWriteBuffer(frac->cl->command_queue,
 	frac->cl->color, CL_TRUE, 0, sizeof(cl_int), &frac->color, 0, NULL, NULL);
+	frac->cl->ret = clEnqueueWriteBuffer(frac->cl->command_queue,
+	frac->cl->fracx0, CL_TRUE, 0, sizeof(cl_double), &frac->x0, 0, NULL, NULL);
+	frac->cl->ret = clEnqueueWriteBuffer(frac->cl->command_queue,
+	frac->cl->fracy0, CL_TRUE, 0, sizeof(cl_double), &frac->y0, 0, NULL, NULL);
+	frac->cl->ret = clEnqueueWriteBuffer(frac->cl->command_queue,
+	frac->cl->p, CL_TRUE, 0, sizeof(cl_int), &frac->p, 0, NULL, NULL);
+}
+
+void	ft_choise_frac(t_fractol *frac)
+{
+	ft_change_params(frac);
+	if (frac->numfrac == 1)
+	{
+		ft_set_kernel_mandelbrot(frac->cl);
+		frac->cl->ret = clEnqueueNDRangeKernel(frac->cl->command_queue,
+		frac->cl->mandelbrot, 1, NULL, frac->cl->global_work_size, NULL, 0,
+		NULL, NULL);
+	}
+	else if (frac->numfrac == 2)
+	{
+		ft_set_kernel_julia(frac->cl);
+		frac->cl->ret = clEnqueueNDRangeKernel(frac->cl->command_queue,
+		frac->cl->julia, 1, NULL, frac->cl->global_work_size, NULL, 0,
+		NULL, NULL);
+	}
+	ft_next_choise_frac(frac);
+	frac->cl->ret = clEnqueueReadBuffer(frac->cl->command_queue,
+	frac->cl->img_data, CL_TRUE, 0, sizeof(int) * WIDTH * HEIGHT,
+	frac->image->img_data, 0, NULL, NULL);
+	mlx_put_image_to_window(frac->mlx_ptr, frac->win_ptr, frac->image->img_ptr,
+	0, 0);
+	ft_print_menu(frac);
 }
 
 void	ft_create_kernels(t_cl *cl)
@@ -56,6 +82,14 @@ void	ft_create_kernels(t_cl *cl)
 	cl->choise = clCreateBuffer(cl->context, CL_MEM_READ_WRITE, sizeof(cl_int),
 	NULL, &cl->ret);
 	cl->color = clCreateBuffer(cl->context, CL_MEM_READ_WRITE, sizeof(cl_int),
+	NULL, &cl->ret);
+	cl->fracx0 = clCreateBuffer(cl->context, CL_MEM_READ_WRITE,
+	sizeof(cl_double),
+	NULL, &cl->ret);
+	cl->fracy0 = clCreateBuffer(cl->context, CL_MEM_READ_WRITE,
+	sizeof(cl_double),
+	NULL, &cl->ret);
+	cl->p = clCreateBuffer(cl->context, CL_MEM_READ_WRITE, sizeof(cl_int),
 	NULL, &cl->ret);
 }
 
@@ -88,9 +122,8 @@ void	ft_get_cl(t_cl *cl)
 
 void	ft_init_cl(t_fractol *frac)
 {
+	frac->cl->global_work_size[0] = WIDTH * HEIGHT;
 	ft_get_cl(frac->cl);
 	ft_create_kernels(frac->cl);
-	ft_change_params(frac);
-	ft_set_kernel_mandelbrot(frac->cl);
-	printf("%d\n", frac->cl->ret);
+	ft_choise_frac(frac);
 }
