@@ -6,7 +6,7 @@
 #    By: ojessi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/18 18:05:46 by ojessi            #+#    #+#              #
-#    Updated: 2019/08/08 23:01:30 by ojessi           ###   ########.fr        #
+#    Updated: 2019/08/08 23:05:24 by ojessi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,7 @@ $(OBJDIR)%.o:$(SRCDIR)%.c
 clean: red
 	/bin/rm -rf $(OBJDIR)
 	@make -C $(FT) clean
+	@make -C $(MLX) clean
 
 fclean: clean
 	/bin/rm -rf $(NAME)
