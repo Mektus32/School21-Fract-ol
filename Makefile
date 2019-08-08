@@ -6,7 +6,7 @@
 #    By: ojessi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/18 18:05:46 by ojessi            #+#    #+#              #
-#    Updated: 2019/07/18 19:59:25 by ojessi           ###   ########.fr        #
+#    Updated: 2019/08/08 23:01:30 by ojessi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,12 @@ FT_INC = -I ./libft
 FT_LNK = ./libft/libft.a
 
 # mlx library
-MLX_LNK = -lmlx -framework OpenGL -framework OpenCL -framework AppKit
+# In school use it without the rest
+#MLX_LNK = -lmlx -framework OpenGL -framework OpenCL -framework AppKit
+MLX = ./minilibx/
+MLX_LIB = $(addprefix $(MLX), mlx.a)
+MLX_INC = -I ./minilibx
+MLX_LNK = -L ./minilibx -l mlx -framework OpenGL -framework AppKit -framework OpenCL
 
 # directories
 SRCDIR = ./src/
@@ -64,7 +69,7 @@ $(FT_LIB):
 	@make -C $(FT)
 
 $(OBJDIR)%.o:$(SRCDIR)%.c
-	$(CC) $(CFLAGS) $(FT_INC) $(INCDIR) -o $@ -c $<
+	$(CC) $(CFLAGS) $(FT_INC) $(MLX_INC) $(INCDIR) -o $@ -c $<
 
 clean: red
 	/bin/rm -rf $(OBJDIR)
